@@ -1,8 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+//Material UI
+import '@fontsource/roboto';
+
+//firebase
+import firebase from "firebase/compat/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyASnE6ma5bDVcUBiYJCcw8kUXtqW1MVsXc",
+  authDomain: "authentication-purple.firebaseapp.com",
+  projectId: "authentication-purple",
+  storageBucket: "authentication-purple.appspot.com",
+  messagingSenderId: "998079665490",
+  appId: "1:998079665490:web:8aca58b05c4900b2fb168b",
+  measurementId: "G-YXNGLNZYPZ"
+};
+
+// Initialize Firebase
+if(!firebase.apps[0]){
+firebase.initializeApp(firebaseConfig);
+}
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,8 +29,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
