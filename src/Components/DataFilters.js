@@ -3,7 +3,9 @@ import './DataFilters.css';
 
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { Input } from '@material-ui/core';
-<script src="extensions/filter-control/bootstrap-table-filter-control.js"></script>
+
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+{/* <script src="extensions/filter-control/bootstrap-table-filter-control.js"></script> */}
 
 
 
