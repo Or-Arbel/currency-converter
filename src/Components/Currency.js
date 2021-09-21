@@ -11,20 +11,37 @@ const [currencyTo,setCurrencyTo] = useState('EGP');
 const [amount,setAmount] = useState(1);
 const [finalResult,setFinalResult] = useState(null);
 
+// UseEffect to get currency symbols, works good on local but not on github (mismatch http/https)
+// useEffect(()=>{
+//         fetch(`http://data.fixer.io/api/symbols?access_key=${API_KEY}`)
+//         .then(res => res.json())
+//         .then(
+//           (result) => {
+//             console.log('Got this result from api in useEffect:');
+//             console.log(result);
+//             let keys = Object.keys(result.symbols);
+//             setSymbols(keys);
+//             console.log(symbols);
+//           })
+//         .catch((error) => {
+//             console.log(`There was an error getting the symbols fron api in useEffect: ${error}`)
+//           })
+// },[])
+
 useEffect(()=>{
-        fetch(`http://data.fixer.io/api/symbols?access_key=${API_KEY}`)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            console.log('Got this result fron api in useEffect:');
-            console.log(result);
-            let keys = Object.keys(result.symbols);
-            setSymbols(keys);
-            console.log(symbols);
-          })
-        .catch((error) => {
-            console.log(`There was an error getting the symbols fron api in useEffect: ${error}`)
-          })
+    fetch(`https://free.currconv.com/api/v7/currencies?apiKey=776a17a7a3ab767ee87f`)
+    .then(res => res.json())
+    .then(
+      (resultObj) => {
+        console.log('Got this result from api in useEffect:');
+        // console.log(resultObj);
+        let keys = Object.keys(resultObj.results);
+        setSymbols(keys);
+        console.log(symbols);
+      })
+    .catch((error) => {
+        console.log(`There was an error getting the symbols fron api in useEffect: ${error}`)
+      })
 },[])
 
 useEffect(()=>{

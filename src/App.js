@@ -5,10 +5,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/storage';
 
 import Currency from './Components/Currency';
+import Files from './Components/Files';
+import { getStorage, ref, listAll } from "firebase/storage";
+import DataFilters from './Components/DataFilters';
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +31,7 @@ export default function App() {
   var provider = new firebase.auth.GoogleAuthProvider();
 
   const [user,setUser] = useState(null);
+  const [filesArray,setFilesArray] = useState([]);
 
 
   useEffect(()=>{
@@ -69,16 +76,61 @@ export default function App() {
     });
   };
 
-  const showComponent=()=>{
+  const showComponent = () => {
         if (user) {
           // User is signed in.
-          return(<Currency/>)
+          return(
+          <div id='container'>
+            <Currency/>
+            <Files/>
+            <DataFilters/>
+          </div>);
+
+          // loadFiles();
+          // return(<Files filesArr={filesArray}/>);
+          // return(<DataFilters/>);
+          
+          // console.log(filesArr);
+          
         } else {
           // No user is signed in.
           return(<h3 style={{textAlign:'center'}}>Please sign in with your google account</h3>)
         }
     
   }
+
+// I wrote this function because i tried to load the files from firebase storage in app.js and pass it as props to Files.js 
+//   const loadFiles = () =>{
+//     let storageRef = firebase.storage().ref(`${user}`);
+//     // Now we get the references of these images
+//     storageRef.listAll().then( result => {
+//       // console.log('im in listall');
+//             let res = result.items;
+//             let tempUrl = '';
+//             let tempMetadata;
+//             let tempArr = [];
+//             // console.log(res);
+
+//             for(let i=0; i<res.length; i++){
+//                 res[i].getDownloadURL()
+//                 .then(url=> tempUrl=url)
+//                 res[i].getMetadata()
+//                 .then(metadata =>{
+//                     tempMetadata = metadata;           
+//                 })
+//                 .then(()=>{
+//                   setFilesArray([...filesArray,{name: tempMetadata.name, date: tempMetadata.timeCreated, link: tempUrl}]);
+//                 })
+//             }
+            
+//       }
+//       ).catch(function(error) {
+//         console.log(error);
+//       });
+
+// }
+
+
 
 
   return (

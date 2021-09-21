@@ -7,6 +7,7 @@ import '@fontsource/roboto';
 
 //firebase
 import firebase from "firebase/compat/app";
+import 'firebase/compat/storage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyASnE6ma5bDVcUBiYJCcw8kUXtqW1MVsXc",
@@ -23,9 +24,13 @@ if(!firebase.apps[0]){
 firebase.initializeApp(firebaseConfig);
 }
 
+const storage = firebase.storage();
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+export{storage, firebase as default};
