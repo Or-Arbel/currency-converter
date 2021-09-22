@@ -2,16 +2,11 @@
     text-align: center;
     margin: 0 auto;
 }
-/* table, tr, td, th{
-    text-align: center;
-    margin: 0 auto;
-    border: 1px solid black;
-} */
 
 .table{
     margin-bottom: 0;
     background-color: white;
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
 }
 html{
